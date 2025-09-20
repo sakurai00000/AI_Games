@@ -174,3 +174,37 @@ restartButton.addEventListener('click', startGame);
 window.addEventListener('resize', () => {
     window.location.reload();
 });
+
+// --- Touch Controls ---
+let touchStartX = null;
+
+gameContainer.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+        touchStartX = e.touches[0].clientX;
+    }
+}, { passive: true });
+
+gameContainer.addEventListener('touchmove', (e) => {
+    if (touchStartX === null || isGameOver) return;
+
+    if (e.touches.length > 0) {
+        const touchCurrentX = e.touches[0].clientX;
+        const deltaX = touchCurrentX - touchStartX;
+        
+        playerPosition += deltaX;
+        touchStartX = touchCurrentX;
+
+        // Prevent player from going out of bounds immediately
+        const gameWidth = gameContainer.clientWidth;
+        const playerWidth = player.clientWidth;
+        if (playerPosition < 0) playerPosition = 0;
+        if (playerPosition > gameWidth - playerWidth) playerPosition = gameWidth - playerWidth;
+
+        player.style.left = playerPosition + 'px';
+    }
+}, { passive: true });
+
+gameContainer.addEventListener('touchend', (e) => {
+    touchStartX = null;
+});
+

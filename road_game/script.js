@@ -235,4 +235,57 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+// --- Touch Controls (Swipe) ---
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const swipeThreshold = 30; // Minimum distance for a swipe
+
+window.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (!gameStarted) return;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) { // Horizontal swipe
+        if (Math.abs(deltaX) > swipeThreshold) {
+            if (deltaX > 0) {
+                // Right
+                player.position.x += 1;
+            } else {
+                // Left
+                player.position.x -= 1;
+            }
+        }
+    } else { // Vertical swipe
+        if (Math.abs(deltaY) > swipeThreshold) {
+            if (deltaY > 0) {
+                // Down
+                player.position.z += laneWidth;
+            } else {
+                // Up
+                player.position.z -= laneWidth;
+                updateScore(1);
+                addNewLane();
+            }
+        }
+    }
+    // Clamp player position after swipe
+    player.position.x = Math.max(-14, Math.min(14, player.position.x));
+    player.position.z = Math.max(-(lanes.length - 1) * laneWidth, Math.min(0, player.position.z));
+}
+
 init();

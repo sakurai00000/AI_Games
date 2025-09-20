@@ -53,8 +53,8 @@ function initGame() {
 function createInitialHand() {
     return [
         CARDS.KING,
-        CARDS.CITIZEN, CARDS.CITIZEN, CARDS.CITIZEN, CARDS.CITIZEN,
-        CARDS.SLAVE
+        CARDS.CITIZEN, CARDS.CITIZEN, CARDS.CITIZEN, // 3 Citizens
+        CARDS.SLAVE, CARDS.SLAVE // 2 Slaves
     ];
 }
 
