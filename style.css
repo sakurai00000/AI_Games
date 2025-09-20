@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+.game-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-links a {
+    display: block;
+    margin: 10px 0;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.game-links a:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eカードゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="header">
+            <h1>Eカードゲーム</h1>
+        </div>
+
+        <div id="rules-section">
+            <h3>ルール説明</h3>
+            <p>「皇帝」「市民」「奴隷」の3種類のカードを使ってAIと対戦します。</p>
+            <h4>カードの強さ</h4>
+            <ul>
+                <li>皇帝 (King) は 市民 (Citizen) に勝つ</li>
+                <li>市民 (Citizen) は 奴隷 (Slave) に勝つ</li>
+                <li>奴隷 (Slave) は 皇帝 (King) に勝つ</li>
+            </ul>
+            <h4>遊び方</h4>
+            <ol>
+                <li>プレイヤーの手札からカードを1枚クリックして選択します。</li>
+                <li>「カードを出す」ボタンをクリックすると、AIもカードを出し、勝敗が決まります。</li>
+                <li>勝者は相手のカードを奪い、敗者は星を1つ失います。</li>
+                <li>どちらかの星が0になるか、皇帝がとられるか、プレイヤーの手札がなくなるとゲーム終了です。</li>
+            </ol>
+        </div>
+
+        <div id="game-area">
+            <div id="ai-area" class="player-area">
+                <div class="hand-container">
+                    <h2>AIの手札</h2>
+                    <div id="ai-hand" class="hand"></div>
+                </div>
+                <div class="chosen-card-container">
+                    <div id="ai-chosen-card" class="chosen-card"></div>
+                </div>
+            </div>
+
+            <div id="result-area">
+                <div id="stars-display">
+                    <p>プレイヤーの星: <span id="player-stars">4</span></p>
+                    <p>AIの星: <span id="ai-stars">4</span></p>
+                </div>
+                <p id="round-result"></p>
+                <button id="play-button" disabled>カードを出す</button>
+            </div>
+
+            <div id="player-area" class="player-area">
+                <div class="hand-container">
+                    <h2>プレイヤーの手札</h2>
+                    <div id="player-hand" class="hand"></div>
+                </div>
+                <div class="chosen-card-container">
+                    <div id="player-chosen-card" class="chosen-card"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="hidden">
+            <h2>ゲーム終了！</h2>
+            <p id="final-message"></p>
+            <button id="restart-button">もう一度プレイ</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

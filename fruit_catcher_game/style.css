@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    overflow: hidden; /* Prevents scrollbars from appearing */
+    /* Flexboxで中央寄せ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #333;
+    margin: 10px 0;
+}
+
+#game-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 4 / 3;
+    border: 2px solid #333;
+    margin: 0 auto; /* 上下のマージンをなくし、左右は自動 */
+    background-color: #87CEEB;
+    overflow: hidden;
+}
+
+#player {
+    position: absolute;
+    /* サイズと位置はJSで制御されるため、ここでは基本スタイルのみ */
+    width: 10%; /* 幅をコンテナに対する割合に */
+    height: 8%; /* 高さをコンテナに対する割合に */
+    background-color: #8B4513;
+    border: 2px solid #000;
+    border-radius: 10px 10px 0 0;
+    bottom: 0;
+}
+
+.falling-object {
+    position: absolute;
+    font-size: 36px; /* サイズはJSで調整される可能性あり */
+}
+
+#score-board {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.controls {
+    font-size: 14px;
+}
+
+#game-over, #start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10;
+}
+
+#start-screen p, #game-over p {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#restart-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
