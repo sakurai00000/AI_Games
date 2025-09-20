@@ -5,7 +5,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; は削除し、メディアクエリで制御 */
     font-family: 'Arial', sans-serif;
     background-color: #2c3e50;
     color: #ecf0f1;
@@ -19,8 +19,9 @@ body {
 
 #game-container {
     width: 95%;
-    max-width: 800px; /* 横幅を少し制限 */
-    height: 98vh; /* 高さを少し調整 */
+    max-width: 800px;
+    /* heightを削除し、min-heightに */
+    min-height: 98vh;
     background-color: #34495e;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -58,34 +59,23 @@ body {
 #game-area {
     grid-row: 3;
     display: grid;
-    /* AI(0.8fr), 結果(auto), プレイヤー(1.2fr) の上下3段構成 */
     grid-template-rows: 0.8fr auto 1.2fr;
     gap: 8px;
     min-height: 0;
 }
 
-#ai-area {
-    grid-row: 1;
-}
-#result-area {
-    grid-row: 2;
-}
-#player-area {
-    grid-row: 3;
-}
+#ai-area { grid-row: 1; }
+#result-area { grid-row: 2; }
+#player-area { grid-row: 3; }
 
 .player-area {
     border: 1px solid #7f8c8d;
     border-radius: 5px;
     padding: 10px;
-    display: grid; /* エリア内をGridに */
-    grid-template-columns: 1fr auto; /* 手札エリア, 選んだカードエリア */
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 10px;
     text-align: center;
-}
-
-.player-area h2 {
-    /* Gridの配置に任せるため削除 */
 }
 
 .hand-container {
@@ -192,7 +182,6 @@ body {
     transition: background-color 0.2s;
 }
 
-/* 以下、変更なし */
 #play-button:hover:not(:disabled) { background-color: #2ecc71; }
 #play-button:disabled { background-color: #7f8c8d; cursor: not-allowed; }
 .hidden { display: none !important; }
@@ -201,3 +190,15 @@ body {
 #game-over-screen p { font-size: 1.5em; margin: 20px 0; }
 #restart-button { background-color: #3498db; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 1.2em; transition: background-color 0.2s; }
 #restart-button:hover { background-color: #2980b9; }
+
+/* --- Media Query for Responsiveness --- */
+/* For larger screens (PC), lock the layout and prevent scroll */
+@media (min-width: 769px) {
+    html, body {
+        overflow: hidden;
+    }
+    #game-container {
+        height: 98vh;
+        min-height: 0; /* Reset min-height */
+    }
+}
